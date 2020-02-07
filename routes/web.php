@@ -16,5 +16,9 @@ Route::get('/', function(){
 });
 
 Route::get('/rota1', function(){
-    return '<h1>Reescrevendo o texto</h1>';
+    return '<h1>Reescrevendo o texto</h1>';   
 });
+
+// method('path', nomeController@nomeMetodo)
+//Quando uma requisição GET for realizada na path '/produtos' o metodo 'lista()' do ProdutoController será executado
+Route::get('/produtos', 'ProdutoController@lista');
