@@ -19,4 +19,5 @@ Route::get('/', function(){
 //Quando uma requisição GET for realizada na path '/produtos' o metodo 'lista()' do ProdutoController será executado
 Route::get('/produtos', 'ProdutoController@lista');
 
-Route::get('/lista/mostra', 'ProdutoController@mostra');
+//Passagem do id do produto pela url, o '{id} será susbstituido pelo valor do id em tempo de execução
+Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra');

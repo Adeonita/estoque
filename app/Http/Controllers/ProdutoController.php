@@ -20,7 +20,7 @@
 
         public function mostra(){
 
-            $id = Request::input('id', '0');
+            $id = Request::route('id'); //Uso o método route da classe request que será passado via get na URL do produto. Será capturado na view lista
             $result = DB::select("select * from produtos where id = $id");
             if(empty($result)){
                 return "Produto não encontrado";
