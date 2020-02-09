@@ -2,25 +2,17 @@
 <html lang="en">
     <head>
         <link href="/css/app.css" rel="stylesheet">
-        <title>Descrição dos produtos</title>
+        <title>Descrição do produto</title>
     </head>
     <body>
         <div class="container">
-          <h1>Detalhe dos produtos</h1>
-          <table class="table table-striped table-bordred table-hover">
-          <tr>
-            <th>Nome</th>
-            <th>Descrição</th>
-            <th>Quantidade</th>
-          </tr>
-            <?php foreach($produtos as $produto): ?>
-            <tr>
-                <td><?print $produto->nome; ?></td>
-                <td><?print $produto->descricao; ?></td>
-                <td><?print $produto->quantidade; ?></td>
-            </tr>
-            <?php endforeach; ?>
-          </table>
+            <h1>Detalhes do produto <?= $produto->nome?></h1>
+            <ul>
+                <li><b>Nome: </b><?print $produto->nome; ?></li>
+                <li><b>Descrição: </b><?print $produto->descricao; ?></li>
+                <li><b>Quantidade: </b><?print $produto->quantidade; ?></li>
+                <li><b>Valor: </b><?print $produto->valor; ?></li>
+            </ul>
         </div>
     </body>
 </html>

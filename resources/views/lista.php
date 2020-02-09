@@ -11,7 +11,7 @@
                         <td><?  print $produto->nome; ?> </td>
                         <td><?  print $produto->descricao; ?> </td>
                         <td><?  print $produto->quantidade; ?> </td>
-                        <td> <a href="/lista/mostra">Visualizar</a> </td>
+                        <td> <a href="/lista/mostra?id=<?= $produto->id?>">Visualizar</a> </td>
                     </tr>
                 <?php endforeach ?>
             </table>
