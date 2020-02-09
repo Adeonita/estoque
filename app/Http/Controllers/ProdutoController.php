@@ -18,9 +18,8 @@
             return view('lista', ['produtos' => $result]);
         }
 
-        public function mostra(){
+        public function mostra($id){ //O id sendo passado como parâmetro na chamada do método, fazendo-se desnecessário o uso da classe Request::route('id')
 
-            $id = Request::route('id'); //Uso o método route da classe request que será passado via get na URL do produto. Será capturado na view lista
             $result = DB::select("select * from produtos where id = $id");
             if(empty($result)){
                 return "Produto não encontrado";
