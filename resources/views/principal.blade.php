@@ -5,6 +5,8 @@
         <title>Controle de Estoque</title>
     </head>
     <body>
-        @yield('conteudo');
+        <div  class="container">
+            @yield('conteudo');
+        </div>
     </body>
 </html>
