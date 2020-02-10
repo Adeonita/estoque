@@ -6,7 +6,7 @@
     </head>
     <body>
         <div  class="container">
-            @yield('conteudo');
+            @yield('conteudo')
         </div>
     </body>
 </html>
