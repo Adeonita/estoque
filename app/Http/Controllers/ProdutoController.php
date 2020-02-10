@@ -15,7 +15,7 @@
             
             $result = DB::select('select * from produtos'); 
 
-            return view('lista', ['produtos' => $result]);
+            return view('produto/lista', ['produtos' => $result]);
         }
 
         public function mostra($id){ //O id sendo passado como parâmetro na chamada do método, fazendo-se desnecessário o uso da classe Request::route('id')
@@ -24,7 +24,7 @@
             if(empty($result)){
                 return "Produto não encontrado";
             }else{
-                return view('detalhes', ['produto' => $result[0]]);
+                return view('produto/detalhes', ['produto' => $result[0]]);
             }
 
         }

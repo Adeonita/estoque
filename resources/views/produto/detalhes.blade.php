@@ -1,4 +1,4 @@
-@extends('principal')
+@extends('layout/principal')
 
 @section('conteudo')
     <h1>Detalhes do produto <?= $produto->nome?></h1>
@@ -13,7 +13,7 @@
         <li><b>Quantidade: </b>
             {{$produto->quantidade or 0}}
         </li>
-        <li><b>Valor: </b>
+        <li><b>Valor R$: </b>
             {{$produto->valor or 0}}
         </li>
     </ul>
