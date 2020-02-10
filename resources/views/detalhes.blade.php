@@ -4,10 +4,18 @@
     <h1>Detalhes do produto <?= $produto->nome?></h1>
 
     <ul>
-        <li><b>Nome: </b><?print $produto->nome; ?></li>
-        <li><b>Descrição: </b><?print $produto->descricao; ?></li>
-        <li><b>Quantidade: </b><?print $produto->quantidade; ?></li>
-        <li><b>Valor: </b><?print $produto->valor; ?></li>
+        <li><b>Nome: </b> 
+            {{$produto->nome or 'Nenhum nome foi informado'}} <!--Maneira que um blade insere variaveis-->
+        </li>
+        <li><b>Descrição: </b> 
+            {{$produto->descricao or 'Nenhuma descrição for informada'}}
+        </li>
+        <li><b>Quantidade: </b>
+            {{$produto->quantidade or 0}}
+        </li>
+        <li><b>Valor: </b>
+            {{$produto->valor or 0}}
+        </li>
     </ul>
 @stop
 
