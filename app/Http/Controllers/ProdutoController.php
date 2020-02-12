@@ -26,7 +26,10 @@
             }else{
                 return view('produto/detalhes', ['produto' => $result[0]]);
             }
+        }
 
+        public function novo(){
+            return view('produto/formulario');
         }
     }
 
