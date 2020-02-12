@@ -45,7 +45,16 @@
 
             $result = DB::insert('insert into produtos (nome, descricao, valor, quantidade) values (?,?,?,?)', 
                                  array($nome, $descricao, $valor, $quantidade ));
-            return redirect('/produtos');
+            return redirect()                           //Trazendo os dados da requisição anteririor  redirecioinando para
+                    ->action('ProdutoController@lista') // Método lista da classe controller idependendente da sua URI
+                    ->withInput(Request::only('nome')); // Trazendo apenas o parâmetro 'nome'
+                                                        // Para trazer todos com execeção de algum use except('parametro')
+                                                                            
+        }
+
+        public function listaJson(){
+            $produtos = DB::select('select *from produtos');
+            return response()->json($produtos);
         }
     }
 
