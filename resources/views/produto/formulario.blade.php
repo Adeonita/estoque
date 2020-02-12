@@ -2,7 +2,7 @@
 
 @section('conteudo')
     <h1>Castro de Produtos</h1>
-    <form action="produtos/adiciona">
+    <form action="/produtos/adiciona">
         <div class="form-group">
             <label>Nome</label>
             <input name="nome" class="form-control">
