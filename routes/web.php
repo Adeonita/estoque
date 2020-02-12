@@ -26,5 +26,8 @@ Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')->where('id', '[0
 Route::get('/produtos/novo', 'ProdutoController@novo');
 
 //Rota para adicionar um novo produto no banco
-Route::get('/produtos/adiciona', 'ProdutoController@adiciona');
+Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
+
+//Rota para retornar um Json
+Route::get('/produtos/listaJson', 'ProdutoController@listaJson');
 
