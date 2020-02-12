@@ -2,6 +2,7 @@
     namespace estoque\Http\Controllers;
 
     use Illuminate\Support\Facades\DB;
+    use estoque\Http\Models\Produto;
     use Request;
 
     class ProdutoController extends Controller {
@@ -13,7 +14,7 @@
          ***/
         public function lista(){
             
-            $result = DB::select('select * from produtos'); 
+            $result = Produto::all(); 
 
             return view('produto/lista', ['produtos' => $result]);
         }
@@ -53,7 +54,7 @@
         }
 
         public function listaJson(){
-            $produtos = DB::select('select *from produtos');
+            $produtos = Produto::all();
             return response()->json($produtos);
         }
     }
