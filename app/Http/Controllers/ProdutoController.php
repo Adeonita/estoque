@@ -43,7 +43,9 @@
             $valor = Request::input('valor');
             $quantidade = Request::input('quantidade');
 
-            return implode(',' array($nome, $descricao, $valor, $quantidade)); 
+            $result = DB::insert('insert into produtos (nome, descricao, valor, quantidade) values (?,?,?,?)', 
+                                 array($nome, $descricao, $valor, $quantidade ));
+            return view('produto/adicionado', ['nome'=>$nome]);
         }
     }
 
