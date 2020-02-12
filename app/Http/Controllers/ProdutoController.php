@@ -45,7 +45,7 @@
 
             $result = DB::insert('insert into produtos (nome, descricao, valor, quantidade) values (?,?,?,?)', 
                                  array($nome, $descricao, $valor, $quantidade ));
-            return view('produto/adicionado', ['nome'=>$nome]);
+            return redirect('/produtos');
         }
     }
 
