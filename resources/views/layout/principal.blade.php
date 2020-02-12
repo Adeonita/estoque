@@ -6,6 +6,10 @@
     </head>
     <body>
         <div  class="container">
+        <ul class="nav navbar-nav navbar-right">
+            <li><a href="/produtos">Listagem</a></li>
+            <li><a href="/produtos/novo">Novo</a></li>
+        </ul>
             @yield('conteudo')
         </div>
     </body>
