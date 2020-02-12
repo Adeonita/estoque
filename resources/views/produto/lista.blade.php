@@ -2,7 +2,7 @@
 
 @section('conteudo')
 
-    @if(empty($produtos))
+    @if(empty($produtos))  <!--Se o array de produtos devolvido pelo controller estiver vazio-->
         <div class="alert alert-danger">
             Você não tem nenhum produto cadastrado.
         </div>
@@ -25,4 +25,9 @@
             Um ou menos itens no estoque
         </span>
     </h4>
+    @if(old('nome'))
+        <div class="alert alert-success" style="margin-top: 50px;">
+            <strong>Sucesso!</strong> O produto {{old('nome')}} foi adicionado.
+        </div>
+    @endif
 @stop
