@@ -21,3 +21,10 @@ Route::get('/produtos', 'ProdutoController@lista');
 
 //Passagem do id do produto pela url, o '{id} será susbstituido pelo valor do id em tempo de execução
 Route::get('/produtos/mostra/{id}', 'ProdutoController@mostra')->where('id', '[0-9]+'); //Através do método where define que o id precisa ser numérico
+
+//Rota para cadastrar um novo produto
+Route::get('/produtos/novo', 'ProdutoController@novo');
+
+//Rota para adicionar um novo produto no banco
+Route::get('/produtos/adiciona', 'ProdutoController@adiciona');
+
