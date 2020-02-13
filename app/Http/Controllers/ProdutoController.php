@@ -38,16 +38,20 @@
          * @return: array
          */
         public function adiciona(){
-            $params = Request::all(); //Pego todos os parâmetros que vieram na requisição
-            $produto = new Produto($params); /**Para utilizar dessa maneira utilize a propriedadeprotected $field no model 
-                                               do objeto para especificar quais parâmetros devem ser populados pelo usuario **/
-            $produto->save(); //Insere o produto no banco de dados
-
-            return redirect()                           //Trazendo os dados da requisição anteririor  redirecioinando para
-                    ->action('ProdutoController@lista') // Método lista da classe controller idependendente da sua URI
-                    ->withInput(Request::only('nome')); // Trazendo apenas o parâmetro 'nome'
-                                                        // Para trazer todos com execeção de algum use except('parametro')
-                                                                            
+            /**
+             * Chamo o método estático do objeto produto e o método estático do objeto request
+             * Cria um novo produto com todos os atributos descritos no seu model
+             */
+            Produto::create(Request::all()); 
+            /**
+             * Trago os dados da requisição anteririor e redireciono-os para o
+             * Método lista() da classe controller idependendente da sua URI
+             * Only se faz necessário para trazer apenas o parâmetro 'nome'
+             * ps: Para trazer todos com execeção de algum use except('parametro')
+             */
+            return redirect()                           
+                    ->action('ProdutoController@lista') 
+                    ->withInput(Request::only('nome'));                                                                             
         }
 
         public function listaJson(){
