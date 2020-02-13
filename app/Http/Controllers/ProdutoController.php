@@ -3,7 +3,8 @@
 
     use estoque\Http\Models\Produto;
     use Request;
-
+    use estoque\Http\Requests\ProdutosRequest;
+    
     class ProdutoController extends Controller {
 
         /**
@@ -35,7 +36,7 @@
         /**
          * Retorna um array com os valores inseridos no formulário separados por ','
          * @param: 
-         * @return: array
+         * @return: view
          */
         public function adiciona(){
             /**
@@ -52,6 +53,19 @@
             return redirect()                           
                     ->action('ProdutoController@lista') 
                     ->withInput(Request::only('nome'));                                                                             
+        }
+
+        /**
+         * Função que remove um produto
+         * @param: id - Id do produto
+         * @return:  
+         **/
+        public function remove($id){
+            $result = Produto::find($id);
+            $result->delete();
+
+            return redirect()
+                   ->action('ProdutoController@lista');
         }
 
         public function listaJson(){

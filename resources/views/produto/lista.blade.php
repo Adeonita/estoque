@@ -15,7 +15,16 @@
                     <td>{{$produto->nome}} </td>
                     <td>{{$produto->descricao}} </td>
                     <td>{{$produto->quantidade}} </td>
-                    <td> <a href="/produtos/mostra/<?= $produto->id?>">Visualizar</a> </td>
+                    <td> <a href="{{action('ProdutoController@mostra', $produto->id)}}">Visualizar</a> </td>
+                    <td>
+                    <form method="post" action="{{action('ProdutoController@remove', $produto->id)}}">
+                        <input type="hidden" name="_token" value="{{{csrf_token()}}}"/>
+                        {{method_field('DELETE')}}
+                        <button type="submit" class="btn btn-danger btn-sm">Delete</button>
+                    </form>
+                    
+                    </td>
+                    
                 </tr>
             @endforeach
         </table>
