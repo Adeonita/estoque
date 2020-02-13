@@ -1,7 +1,6 @@
 <?php
     namespace estoque\Http\Controllers;
 
-    use Illuminate\Support\Facades\DB;
     use estoque\Http\Models\Produto;
     use Request;
 
@@ -21,11 +20,11 @@
 
         public function mostra($id){ //O id sendo passado como parâmetro na chamada do método, fazendo-se desnecessário o uso da classe Request::route('id')
 
-            $result = DB::select("select * from produtos where id = $id");
+            $result = Produto::find($id);            
             if(empty($result)){
-                return "Produto não encontrado";
+                return "Produto inexistente";
             }else{
-                return view('produto/detalhes', ['produto' => $result[0]]);
+                return view('produto/detalhes', ['produto' => $result]);
             }
         }
 
@@ -39,13 +38,11 @@
          * @return: array
          */
         public function adiciona(){
-            $nome = Request::input('nome');
-            $descricao = Request::input('descricao');
-            $valor = Request::input('valor');
-            $quantidade = Request::input('quantidade');
+            $params = Request::all(); //Pego todos os parâmetros que vieram na requisição
+            $produto = new Produto($params); /**Para utilizar dessa maneira utilize a propriedadeprotected $field no model 
+                                               do objeto para especificar quais parâmetros devem ser populados pelo usuario **/
+            $produto->save(); //Insere o produto no banco de dados
 
-            $result = DB::insert('insert into produtos (nome, descricao, valor, quantidade) values (?,?,?,?)', 
-                                 array($nome, $descricao, $valor, $quantidade ));
             return redirect()                           //Trazendo os dados da requisição anteririor  redirecioinando para
                     ->action('ProdutoController@lista') // Método lista da classe controller idependendente da sua URI
                     ->withInput(Request::only('nome')); // Trazendo apenas o parâmetro 'nome'
