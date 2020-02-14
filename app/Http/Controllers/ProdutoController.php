@@ -52,7 +52,7 @@
              */
             return redirect()                           
                     ->action('ProdutoController@lista') 
-                    ->withInput(Request::only('nome'));                                                                             
+                    ->withInput(Request::only('nome'));
         }
 
         /**
@@ -73,7 +73,7 @@
             if(empty($result)){
                 return "Produto inexistente";
             }else{
-                return view('/produto/formularioAtualiza', ['produto' => $result]);
+                return view('/produto/formularioAtualiza', ['produto' => $result]); //O formulário precisa do id
             }
         }
 
@@ -84,11 +84,18 @@
             $result->descricao = Request::input('descricao');
             $result->quantidade = Request::input('quantidade');
             $result->valor = Request::input('valor');
+            $produto = Produto::all();
             
-            $result->save();
-            
+           $result->save();
+
+         /*   $is_atualizado = false;
+            if($result){
+                $is_atualizado = true;
+            }
+           */ 
             return redirect()
-                    ->action('ProdutoController@lista');
+                    ->action('ProdutoController@lista')
+                    ->with('status' , 'Produto Atualizado');
         }
 
         public function listaJson(){

@@ -1,7 +1,7 @@
 @extends('layout/principal')
 
 @section('conteudo')
-
+    
     @if(empty($produtos))  <!--Se o array de produtos devolvido pelo controller estiver vazio-->
         <div class="alert alert-danger">
             Você não tem nenhum produto cadastrado.
@@ -44,4 +44,10 @@
             <strong>Sucesso!</strong> O produto {{old('nome')}} foi adicionado.
         </div>
     @endif
+    @if(session('status'))
+        <div class="alert alert-success" style="margin-top: 50px;">
+            {{ session('status') }}
+        </div>
+    @endif
+    
 @stop
