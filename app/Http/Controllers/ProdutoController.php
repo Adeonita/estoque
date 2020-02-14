@@ -4,7 +4,7 @@
     use estoque\Http\Models\Produto;
     use Request;
     use estoque\Http\Requests\ProdutosRequest;
-    
+
     class ProdutoController extends Controller {
 
         /**
@@ -66,6 +66,28 @@
 
             return redirect()
                    ->action('ProdutoController@lista');
+        }
+
+        public function atualiza($id){
+            $result = Produto::find($id);  
+            if(empty($result)){
+                return "Produto inexistente";
+            }else{
+                return view('/produto/formularioAtualiza', ['produto' => $result]);
+            }
+        }
+
+        public function atualizado($id){
+            $result = Produto::find($id);
+            
+            $result->nome = Request::input('nome');
+            $result->descricao = Request::input('descricao');
+            $result->quantidade = Request::input('quantidade');
+            $result->valor = Request::input('valor');
+            
+            $result->save();
+            
+            return $result;
         }
 
         public function listaJson(){

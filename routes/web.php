@@ -34,3 +34,9 @@ Route::get('/produtos/listaJson', 'ProdutoController@listaJson');
 //Rota para deletar um produto
 Route::delete('/produtos/remove/{id}', 'ProdutoController@remove');
 
+//Rota para preencher a atualização de um produto
+Route::get('/produtos/atualiza/{id}', 'ProdutoController@atualiza')->where('id', '[0-9]+');
+
+//Rota para atualização concluida
+Route::post('/produtos/atualizado/{id}', 'ProdutoController@atualizado');
+
