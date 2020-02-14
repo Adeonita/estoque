@@ -87,7 +87,8 @@
             
             $result->save();
             
-            return $result;
+            return redirect()
+                    ->action('ProdutoController@lista');
         }
 
         public function listaJson(){

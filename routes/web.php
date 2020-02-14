@@ -38,5 +38,5 @@ Route::delete('/produtos/remove/{id}', 'ProdutoController@remove');
 Route::get('/produtos/atualiza/{id}', 'ProdutoController@atualiza')->where('id', '[0-9]+');
 
 //Rota para atualização concluida
-Route::post('/produtos/atualizado/{id}', 'ProdutoController@atualizado');
+Route::put('/produtos/atualizado/{id}', 'ProdutoController@atualizado');
 
