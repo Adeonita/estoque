@@ -3,7 +3,7 @@
 
     use estoque\Http\Models\Produto;
     use Request;
-    use estoque\Http\Requests\ProdutosRequest;
+    use estoque\Http\Requests\ProdutoRequest;
 
     class ProdutoController extends Controller {
 
@@ -38,12 +38,12 @@
          * @param: 
          * @return: view
          */
-        public function adiciona(){
+        public function adiciona(ProdutoRequest $request){
             /**
              * Chamo o método estático do objeto produto e o método estático do objeto request
              * Cria um novo produto com todos os atributos descritos no seu model
              */
-            Produto::create(Request::all()); 
+            Produto::create($request->all()); 
             /**
              * Trago os dados da requisição anteririor e redireciono-os para o
              * Método lista() da classe controller idependendente da sua URI
