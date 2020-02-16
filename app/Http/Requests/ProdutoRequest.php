@@ -34,7 +34,7 @@ class ProdutoRequest extends FormRequest
     public function messages(){
         return[
             'required' => 'O campo :attribute não pode ser vazio',
-            'quantidade.regex' => 'O numero precisa ser maior que zero '
+            'quantidade.regex' => 'A quantidade precisa ser maior que zero '
         ];
     }
 }
