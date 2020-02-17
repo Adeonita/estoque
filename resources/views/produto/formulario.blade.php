@@ -30,7 +30,7 @@
         </div>
         <div class="form-group">
             <label>Quantidade</label>
-            <input name="quantidade" value="{{('quantidade')}}" type="number" class="form-control">
+            <input name="quantidade" value="{{old('quantidade')}}" type="number" class="form-control">
         </div>
         <button type="submit" class="btn
         btn-primary btn-block">Submit</button>

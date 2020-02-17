@@ -41,3 +41,7 @@ Route::get('/produtos/atualiza/{id}', 'ProdutoController@atualiza')->where('id',
 //Rota para atualização concluida
 Route::put('/produtos/atualizado/{id}', 'ProdutoController@atualizado');
 
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
