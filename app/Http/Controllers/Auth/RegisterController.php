@@ -2,7 +2,7 @@
 
 namespace estoque\Http\Controllers\Auth;
 
-use estoque\User;
+use estoque\Http\Models\User;  
 use estoque\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
