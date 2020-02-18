@@ -16,9 +16,11 @@
             
             $result = Produto::all(); 
 
-            return view('produto/lista', ['produtos' => $result]);
-        }
+            return response()->json($result);
 
+            //return view('produto/lista', ['produtos' => $result]);
+        }
+        /*
         public function mostra($id){ //O id sendo passado como parâmetro na chamada do método, fazendo-se desnecessário o uso da classe Request::route('id')
 
             $result = Produto::find($id);            
@@ -28,9 +30,9 @@
                 return view('produto/detalhes', ['produto' => $result]);
             }
         }
+        */
 
-
-        public function mostraJson($id){
+        public function mostra($id){
             $result = Produto::find($id);
             return response()->json($result);
         }
@@ -49,8 +51,8 @@
              * Chamo o método estático do objeto produto e o método estático do objeto request
              * Cria um novo produto com todos os atributos descritos no seu model
              */
-            $produto = Produto::create($request->all()); 
-
+            $produto =Produto::create($request->all()); 
+            
             $response = response()->json($produto);
             return $response;
             /**
