@@ -12,7 +12,7 @@
             </ul>
         </div>
     @endif
-    <form action="/produtos/adiciona" method="post">
+    <form action="{{ action('ProdutoController@adiciona' }}" method="post">
         <!---->
         <input type="hidden" name="_token" value="{{{ csrf_token() }}}">
 
