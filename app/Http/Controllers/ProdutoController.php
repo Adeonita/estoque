@@ -29,6 +29,12 @@
             }
         }
 
+
+        public function mostraJson($id){
+            $result = Produto::find($id);
+            return response()->json($result);
+        }
+
         public function novo(){
             return view('produto/formulario');
         }
