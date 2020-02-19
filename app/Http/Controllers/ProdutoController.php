@@ -48,16 +48,6 @@
             return "$result->delete()";
         }
 
-        public function atualiza($id){
-            $result = Produto::find($id);  
-
-            if(empty($result)){
-                return "Produto inexistente";
-            }else{
-                return view('/produto/formularioAtualiza', ['produto' => $result]); //O formulário precisa do id
-            }            
-        }
-
         public function update($id){
             $result = Produto::find($id);            
             $result->nome = Request::input('nome');
