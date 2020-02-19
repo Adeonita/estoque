@@ -29,9 +29,6 @@ Route::get('/produtos/novo', 'ProdutoController@novo');
 //Rota para adicionar um novo produto no banco
 Route::post('/produtos/adiciona', 'ProdutoController@adiciona');
 
-//Rota para retornar um Json
-Route::get('/produtos/listaJson', 'ProdutoController@listaJson');
-
 //Rota para deletar um produto
 Route::delete('/produtos/remove/{id}', 'ProdutoController@remove');
 

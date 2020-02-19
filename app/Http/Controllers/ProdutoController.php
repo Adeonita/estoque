@@ -78,8 +78,7 @@
         }
 
         public function atualizado($id){
-            $result = Produto::find($id);
-            
+            $result = Produto::find($id);            
             $result->nome = Request::input('nome');
             $result->descricao = Request::input('descricao');
             $result->quantidade = Request::input('quantidade');
@@ -88,20 +87,11 @@
             
            $result->save();
 
-         /*   $is_atualizado = false;
-            if($result){
-                $is_atualizado = true;
-            }
-           */ 
             return redirect()
                     ->action('ProdutoController@lista')
                     ->with('status' , 'Produto Atualizado');
         }
 
-        public function listaJson(){
-            $produtos = Produto::all();
-            return response()->json($produtos);
-        }
     }
 
 ?>
