@@ -2,8 +2,12 @@
 
 @section('conteudo')
     <h1>Atualização do Produto - {{$produto->nome}}</h1>
+    <!--
     <form action="/produtos/atualizado/{{$produto->id}}" method="post">
-    <input type="hidden" name="_token" value="{{{csrf_token()}}}"/>
+    -->
+    <form action="{{ action('ProdutoController@update', ['id' => $produto->id]) }}" method="post">
+
+    <input type="hidden" name="_token" value="{{csrf_token()}}"/>
     {{method_field('PUT')}}
 
         <!---->
