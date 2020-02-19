@@ -9,7 +9,7 @@
 
         /**
          * Retorna uma lista de produtos
-         * @return 
+         * @return: 
          */
         public function index(){
             $result = Produto::all(); 
@@ -45,7 +45,7 @@
          **/
         public function delete($id){
             $result = Produto::find($id);         
-            return $result->delete();
+            return "$result->delete()";
         }
 
         public function atualiza($id){
