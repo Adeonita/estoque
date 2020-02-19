@@ -16,9 +16,11 @@
             
             $result = Produto::all(); 
 
-            return view('produto/lista', ['produtos' => $result]);
-        }
+            return response()->json($result);
 
+            //return view('produto/lista', ['produtos' => $result]);
+        }
+        /*
         public function mostra($id){ //O id sendo passado como parâmetro na chamada do método, fazendo-se desnecessário o uso da classe Request::route('id')
 
             $result = Produto::find($id);            
@@ -27,6 +29,12 @@
             }else{
                 return view('produto/detalhes', ['produto' => $result]);
             }
+        }
+        */
+
+        public function mostra($id){
+            $result = Produto::find($id);
+            return response()->json($result);
         }
 
         public function novo(){
@@ -43,16 +51,20 @@
              * Chamo o método estático do objeto produto e o método estático do objeto request
              * Cria um novo produto com todos os atributos descritos no seu model
              */
-            Produto::create($request->all()); 
+            $produto =Produto::create($request->all()); 
+            
+            $response = response()->json($produto);
+            return $response;
             /**
              * Trago os dados da requisição anteririor e redireciono-os para o
              * Método lista() da classe controller idependendente da sua URI
              * Only se faz necessário para trazer apenas o parâmetro 'nome'
              * ps: Para trazer todos com execeção de algum use except('parametro')
              */
+            /*
             return redirect()                           
                     ->action('ProdutoController@lista') 
-                    ->withInput(Request::only('nome'));
+                    ->withInput(Request::only('nome'));*/
         }
 
         /**
@@ -70,11 +82,13 @@
 
         public function atualiza($id){
             $result = Produto::find($id);  
+
             if(empty($result)){
                 return "Produto inexistente";
             }else{
                 return view('/produto/formularioAtualiza', ['produto' => $result]); //O formulário precisa do id
             }
+            
         }
 
         public function atualizado($id){
@@ -82,16 +96,32 @@
             $result->nome = Request::input('nome');
             $result->descricao = Request::input('descricao');
             $result->quantidade = Request::input('quantidade');
-            $result->valor = Request::input('valor');
-            $produto = Produto::all();
-            
-           $result->save();
+            $result->valor = Request::input('valor');         
+            $result->save();
 
+<<<<<<< HEAD
+=======
+            $response = response()->json($result);
+            return $response;
+            /*
+>>>>>>> e13429c75bd6ed4bad6f23240ea4704d9306e9ed
             return redirect()
                     ->action('ProdutoController@lista')
                     ->with('status' , 'Produto Atualizado');
+            */
         }
 
+<<<<<<< HEAD
+=======
+        public function listaJson(){
+            $produtos = Produto::all();
+            return response()->json($produtos);
+        }
+
+        public function geraToken(){
+            return csrf_token();
+        }
+>>>>>>> e13429c75bd6ed4bad6f23240ea4704d9306e9ed
     }
 
 ?>
