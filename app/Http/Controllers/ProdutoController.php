@@ -42,7 +42,7 @@
              * Chamo o método estático do objeto produto e o método estático do objeto request
              * Cria um novo produto com todos os atributos descritos no seu model
              */
-            $produto =Produto::create($request->all()); 
+            $produto = Produto::create($request->all()); 
             
             /**
              * Trago os dados da requisição anteririor e redireciono-os para o
