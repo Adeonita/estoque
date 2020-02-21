@@ -18,24 +18,15 @@ Route::get('/', function(){
     return view('welcome');
 });
 
-//Route:: method('path', nomeController@nomeMetodo);
-//Quando uma requisição GET for realizada na path '/produtos' o metodo 'lista()' do ProdutoController será executado
-Route::get('/produtos', 'ProdutoController@index');
+Route::get('/produtos', 'ProdutoController@index'); //lista todos os produtos
 
-//Rota que exibe um produto Json
-Route::get('produtos/{id}', 'ProdutoController@show')->where('id', '[0-9]+' );
+Route::get('produtos/{id}', 'ProdutoController@show')->where('id', '[0-9]+' ); //Mostra produto{id}
 
-//Rota para adicionar um novo produto no banco
-Route::post('/produtos', 'ProdutoController@store');
+Route::post('/produtos', 'ProdutoController@store'); //Rota para inserir um produto
 
-//Rota para deletar um produto
-Route::delete('/produtos/{id}', 'ProdutoController@delete');
+Route::delete('/produtos/{id}', 'ProdutoController@delete'); //Deleta produto{id}
 
-//Rota para view formularioAtualiza de um produto
-Route::get('/produtos/atualiza/{id}', 'ProdutoController@atualiza')->where('id', '[0-9]+');
-
-//Rota para atualização 
-Route::put('/produtos/{id}', 'ProdutoController@update');
+Route::put('/produtos/{id}', 'ProdutoController@update');//Atualiza produto{id} 
 
 Route::get('geraToken', 'ProdutoController@geraToken');
 
