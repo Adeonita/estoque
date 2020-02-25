@@ -2,15 +2,16 @@
 
 namespace estoque\Http\Controllers;
 
-use Illuminate\Http\Request;
+use Request;
+use Auth;
 
 class LoginController extends Controller
 {
     public function login(){
         $credenciais = Request::only('email', 'password');
 
-        if(){
-            return "Usuario NOME logado com sucesso";
+        if(Auth::attempt($credenciais)){
+            return "Usuário ".ucfirst( Auth::user()->name)." logado com sucesso";
         }
         return "As credenciais não são validas";
     }    

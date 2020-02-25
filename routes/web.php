@@ -45,4 +45,6 @@ Route::get('geraToken', 'ProdutoController@geraToken');
 
 Auth::routes();
 
+//Route::get('/login', 'LoginController@login');
+
 Route::get('/home', 'HomeController@index')->name('home');
