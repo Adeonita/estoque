@@ -7,6 +7,10 @@
 
     class ProdutoController extends Controller {
 
+        public function __contruct(){
+            $this->middleware('auth')->only('update', 'delete');
+        }
+
         /**
          * Retorna uma lista de produtos
          * @return: json - Lista de produtos
@@ -27,8 +31,8 @@
             $product = Produto::find($id);
             if(!$product){
                 return response()
-                        ->json(['message' => 'Record not found'],)
-                        ->setStatuscode(404);
+                        ->json(['message' => 'Record not found',])
+                        ->setStatusCode(404);
             }
             $response = response()
                         ->json($product)
@@ -63,7 +67,7 @@
             $produto = Produto::find($id);  
             if(!$produto){
                 return response()
-                        ->json(['message' => 'Record not found'],)
+                        ->json(['message' => 'Record not found',])
                         ->setstatusCode(404);
             }
             $produto->nome = Request::input('nome');
