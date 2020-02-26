@@ -24,9 +24,9 @@ Route::get('produtos/{id}', 'ProdutoController@show')->where('id', '[0-9]+' ); /
 
 Route::post('/produtos', 'ProdutoController@store'); //Rota para inserir um produto
 
-Route::delete('/produtos/{id}', 'ProdutoController@delete'); //Deleta produto{id}
+Route::delete('/produtos/{id}', 'ProdutoController@delete')->middleware('auth'); //Deleta produto{id}, rota protegida pelo middleware de autenticação
 
-Route::put('/produtos/{id}', 'ProdutoController@update');//Atualiza produto{id} 
+Route::put('/produtos/{id}', 'ProdutoController@update')->middleware('auth');//Atualiza produto{id}, rota protegida pelo middleware de autenticação
 
 Route::get('geraToken', 'ProdutoController@geraToken');
 
