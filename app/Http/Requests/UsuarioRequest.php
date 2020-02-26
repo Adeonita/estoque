@@ -24,9 +24,9 @@ class UsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|max:100',
+            'nome' => 'required|max:100',
             'email' => 'required|max:100',
-            'password' => 'required|max:100'
+            'senha' => 'required|max:100'
         ];
     }
 }

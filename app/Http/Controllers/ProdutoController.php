@@ -13,7 +13,7 @@
 
         /**
          * Retorna uma lista de produtos
-         * @return: json - Lista de produtos
+         * @return json - Lista de produtos
          */
         public function index(){
             $result = Produto::all(); 
@@ -21,47 +21,26 @@
                     ->json($result)
                     ->setStatusCode(200);
         }
-        
-        /**
-         * Mostra um produto
-         * @param: id
-         * @return 
-         */
-        public function show($id){
-            $product = Produto::find($id);
-            if(!$product){
-                return response()
-                        ->json(['message' => 'Record not found',])
-                        ->setStatusCode(404);
-            }
-            $response = response()
-                        ->json($product)
-                        ->setStatusCode(200);
-            return $response;
-        }
 
         /**
          * Insere o produto no banco
-         * @param: 
-         * @return: 
+         * @param ProdutoRequest
+         * @return 
          */
         public function store(ProdutoRequest $request){
             $result = Produto::create($request->all()); 
             $response = response()
                         ->json($result)
                         ->setStatusCode(201);
+                        
             return $response;            
         }
-
+        
         /**
-         * Função que remove um produto
-         * @param: id - Id do produto
-         * @return:  
-         **/
-        public function delete($id){
-            $result = Produto::find($id);         
-            return "$result->delete()";
-        }
+         * Insere o produto no banco
+         * @param id
+         * @return response
+         */
 
         public function update($id){
             $produto = Produto::find($id);  
@@ -82,6 +61,34 @@
             return $response;
         }
 
+        /**
+         * Função que remove produto{id}
+         * @param id:integer - Id do produto
+         * @return response:string
+         **/
+        public function delete($id){
+            $result = Produto::find($id);         
+            return "$result->delete()";
+        }
+
+
+        /**
+         * Mostra produto{id}
+         * @param id:integer
+         * @return response:json
+         */
+        public function show($id){
+            $product = Produto::find($id);
+            if(!$product){
+                return response()
+                        ->json(['message' => 'Record not found',])
+                        ->setStatusCode(404);
+            }
+            $response = response()
+                        ->json($product)
+                        ->setStatusCode(200);
+            return $response;
+        }
 
         public function geraToken(){
             return csrf_token();

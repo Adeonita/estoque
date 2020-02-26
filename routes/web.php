@@ -32,3 +32,10 @@ Route::get('geraToken', 'ProdutoController@geraToken');
 
 Auth::routes();
 
+Route::post('/api/auth/login', 'AuthController@authenticate');
+
+Route::post('/usuarios', 'UsuarioController@store'); //Insere usuario
+Route::put('/usuarios/{id}', 'UsuarioController@update'); //Atualiza usuario{id}
+Route::delete('/usuarios/{id}', 'UsuarioController@delete'); //Deleta usuario{id}
+Route::get('/usuarios/{id}', 'UsuarioController@show'); //Lista usuario{id}
+Route::get('/usuarios', 'UsuarioController@index'); //Lista todos os usuarios
