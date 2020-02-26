@@ -9,11 +9,13 @@
 
         /**
          * Retorna uma lista de produtos
-         * @return: 
+         * @return: json - Lista de produtos
          */
         public function index(){
             $result = Produto::all(); 
-            return response()->json($result);
+            return response()
+                    ->json($result)
+                    ->setStatusCode(200);
         }
         
         /**
@@ -22,19 +24,28 @@
          * @return 
          */
         public function show($id){
-            $result = Produto::find($id);
-            $response = response()->json($result);
+            $product = Produto::find($id);
+            if(!$product){
+                return response()
+                        ->json(['message' => 'Record not found'],)
+                        ->setStatuscode(404);
+            }
+            $response = response()
+                        ->json($product)
+                        ->setStatusCode(200);
             return $response;
         }
 
         /**
-         * Insere no banco
+         * Insere o produto no banco
          * @param: 
          * @return: 
          */
         public function store(ProdutoRequest $request){
             $result = Produto::create($request->all()); 
-            $response = response()->json($result);
+            $response = response()
+                        ->json($result)
+                        ->setStatusCode(201);
             return $response;            
         }
 
@@ -49,13 +60,20 @@
         }
 
         public function update($id){
-            $result = Produto::find($id);            
-            $result->nome = Request::input('nome');
-            $result->descricao = Request::input('descricao');
-            $result->quantidade = Request::input('quantidade');
-            $result->valor = Request::input('valor');         
-            $result->save();
-            $response = response()->json($result);
+            $produto = Produto::find($id);  
+            if(!$produto){
+                return response()
+                        ->json(['message' => 'Record not found'],)
+                        ->setstatusCode(404);
+            }
+            $produto->nome = Request::input('nome');
+            $produto->descricao = Request::input('descricao');
+            $produto->quantidade = Request::input('quantidade');
+            $produto->valor = Request::input('valor');         
+            $produto->save();
+            $response = response()
+                        ->json($produto)
+                        ->setStatusCode(200);
 
             return $response;
         }
