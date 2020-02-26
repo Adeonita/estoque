@@ -4,7 +4,7 @@ namespace estoque\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UsuarioRequest extends FormRequest
+class UserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +24,9 @@ class UsuarioRequest extends FormRequest
     public function rules()
     {
         return [
-            'nome' => 'required|max:100',
+            'name' => 'required|max:100',
             'email' => 'required|max:100',
-            'senha' => 'required|max:100'
+            'password' => 'required|max:100'
         ];
     }
 }

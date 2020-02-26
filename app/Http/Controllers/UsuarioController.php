@@ -3,8 +3,8 @@
 namespace estoque\Http\Controllers;
 
 use Illuminate\Http\Request;
-use estoque\Http\Models\Usuario;
-use estoque\Http\Requests\UsuarioRequest;
+use estoque\Http\Models\User;
+use estoque\Http\Requests\UserRequest;
 
 class UsuarioController extends Controller
 {
@@ -13,7 +13,7 @@ class UsuarioController extends Controller
          * @return 
          */
     public function index(){
-        $users = Usuario::all();
+        $users = User::all();
         $response = response()
                     ->json($users)
                     ->setStatusCode(200);
@@ -26,8 +26,8 @@ class UsuarioController extends Controller
     * @param UserRequest
     * @return Response
      */
-    public function store(UsuarioRequest $request){
-        $user = Usuario::create($request->all());
+    public function store(UserRequest $request){
+        $user = User::create($request->all());
         $response = response()
                     ->json($user)
                     ->setStatusCode(201);
@@ -41,7 +41,7 @@ class UsuarioController extends Controller
      * @return 
      */
     public function update($id){
-        $user = Usuario::find($id);
+        $user = User::find($id);
         if(!$user){
             return response()
                 ->json(['message' => 'Record not found'])
@@ -62,7 +62,7 @@ class UsuarioController extends Controller
      * @return 
      */
     public function delete($id){
-        $user = Usuario::find($id);
+        $user = User::find($id);
         $user->delete();
         $response = response()
                     ->setStatusCode(200);
@@ -74,7 +74,7 @@ class UsuarioController extends Controller
      * @return 
      */
     public function show($id){
-        $user = Usuario::find($id);
+        $user = User::find($id);
         if(!$user){
             return response()
                     ->json(['message' => 'Record not found'])
