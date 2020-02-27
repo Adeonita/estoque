@@ -24,7 +24,7 @@ Route::get('produtos/{id}', 'ProdutoController@show')->where('id', '[0-9]+' ); /
 
 Route::post('/produtos', 'ProdutoController@store'); //Rota para inserir um produto
 
-Route::delete('/produtos/{id}', 'ProdutoController@delete'); //Deleta produto{id}
+Route::delete('/produtos/{id}', 'ProdutoController@delete')->middleware('jwt.auth'); //Deleta produto{id}
 
 Route::put('/produtos/{id}', 'ProdutoController@update');//Atualiza produto{id}
 

@@ -8,7 +8,7 @@
     class ProdutoController extends Controller {
 
         public function __contruct(){
-            $this->middleware('auth')->only('update', 'delete');
+            //$this->middleware('jwt.auth')->only('delete');
         }
 
         /**
@@ -67,8 +67,9 @@
          * @return response:string
          **/
         public function delete($id){
-            $result = Produto::find($id);         
-            return "$result->delete()";
+            $result = Produto::find($id);    
+            $result = $result->delete();
+            return response()->json($result);
         }
 
 
