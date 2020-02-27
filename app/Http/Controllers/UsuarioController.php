@@ -27,7 +27,11 @@ class UsuarioController extends Controller
     * @return Response
      */
     public function store(UserRequest $request){
-        $user = User::create($request->all());
+        $user = new User;
+        $user->name = $request->name;
+        $user->email = $request->email;
+        $user->password = bcrypt($request->password);
+        $user->save();
         $response = response()
                     ->json($user)
                     ->setStatusCode(201);
@@ -49,7 +53,7 @@ class UsuarioController extends Controller
         }
         $user->nome = Request::input('nome');
         $user->email = Request::input('email');
-        $user->senha = Request::input('senha');
+        $user->senha = bcrypt(Request::input('senha'));  
         $user->save();
         $response = response()
                     ->json($user)
