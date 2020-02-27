@@ -50,7 +50,7 @@ class UsuarioController extends Controller
         if(!$user){
             return response()
                 ->json(['message' => 'Record not found'])
-                ->setStatusCode(404);
+                ->setStatusCode(204); //nenhum conteudo encontrado
         }
         $user->name = Request::input('name');
         $user->email = Request::input('email');
@@ -72,11 +72,11 @@ class UsuarioController extends Controller
         if(!$user){
             return response()
                     ->json(['message' => 'Record not found'])
-                    ->setStatusCode(404);
+                    ->setStatusCode(204);
         }
         $user = $user->delete();
         return response()
-                    ->json($user)
+                    ->json()
                     ->setStatusCode(200);
     }
 
@@ -89,11 +89,11 @@ class UsuarioController extends Controller
         $user = User::find($id);
         if(!$user){
             return response()
-                    ->json(['message' => 'Record not found'])
+                    ->json(['erro' => 'Record not found', 'result'=>false, 'data'=>[]])
                     ->setStatusCode(404);
         }
         $response = response()
-                    ->json($user)
+                    ->json(['erro'=>false, 'result'=>true, 'data' => $user])
                     ->setStatusCode(200);
         return $response;
     }
