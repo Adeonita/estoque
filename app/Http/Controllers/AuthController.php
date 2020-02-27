@@ -3,7 +3,7 @@
 namespace estoque\Http\Controllers;
 
 use Illuminate\Http\Request;
-use estoque\Models\User;
+use estoque\Http\Models\User;
 use estoque\Http\Requests;
 use estoque\Http\Controllers\Controller;
 use JWTAuth;
@@ -12,7 +12,7 @@ use Hash;
 class AuthController extends Controller
 {
     public function authenticate(Request $request){
-        $credentials = $request->only('email', 'password', 'name'); //pega o name, email e senha da requisição
+        $credentials = $request->only('email', 'password' ); //pega o email e senha da requisição
         $user = User::where('email', $credentials['email'])->first(); //procura pela primeira ocorrência deste email
 
         if(!$user){  //Se não existir retorna 404 error
@@ -33,8 +33,8 @@ class AuthController extends Controller
 
         return response()->json([
             'acess_token' => $token,
-            'token_type' => 'bearer',
-            'expires_ins' => JWTAuth::decode()->get('exp')
+            'token_type' => 'Bearer',
+            'expires_ins' => $expiration
 
         ]);
     
