@@ -67,7 +67,7 @@
          * @return response:string
          **/
         public function delete($id){
-            $result = Produto::find($id);    
+            $result = Produto::find($id);  
             $result = $result->delete();
             return response()->json($result);
         }
