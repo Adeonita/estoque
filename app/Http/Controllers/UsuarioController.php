@@ -2,9 +2,10 @@
 
 namespace estoque\Http\Controllers;
 
-use Illuminate\Http\Request;
+//use Illuminate\Http\Request;
 use estoque\Http\Models\User;
 use estoque\Http\Requests\UserRequest;
+use Request;
 
 class UsuarioController extends Controller
 {
@@ -44,20 +45,21 @@ class UsuarioController extends Controller
      * @param 
      * @return 
      */
-    public function update($id){
+    public function update( $id){
         $user = User::find($id);
         if(!$user){
             return response()
                 ->json(['message' => 'Record not found'])
                 ->setStatusCode(404);
         }
-        $user->nome = Request::input('nome');
+        $user->name = Request::input('name');
         $user->email = Request::input('email');
-        $user->senha = bcrypt(Request::input('senha'));  
+        $user->password = bcrypt(Request::input('password'));  
         $user->save();
         $response = response()
                     ->json($user)
                     ->setStatusCode(200);
+        return $response;
     }
 
     /**
@@ -67,8 +69,14 @@ class UsuarioController extends Controller
      */
     public function delete($id){
         $user = User::find($id);
-        $user->delete();
-        $response = response()
+        if(!$user){
+            return response()
+                    ->json(['message' => 'Record not found'])
+                    ->setStatusCode(404);
+        }
+        $user = $user->delete();
+        return response()
+                    ->json($user)
                     ->setStatusCode(200);
     }
 
