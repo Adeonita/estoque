@@ -16,9 +16,22 @@
          * @return json - Lista de produtos
          */
         public function index(){
-            $result = Produto::all(); 
+            $products = Produto::all(); 
+            if(!$products){
+                return response()
+                        ->json([
+                            'error' => 'Record not found',
+                            'result' => false,
+                            'data' => []
+                        ])
+                        ->setStatusCode(204);
+            }
             return response()
-                    ->json($result)
+                    ->json([
+                        'error' => 'Record not found',
+                        'result' => true,
+                        'data' => $products
+                    ])
                     ->setStatusCode(200);
         }
 
@@ -28,9 +41,22 @@
          * @return 
          */
         public function store(ProdutoRequest $request){
-            $result = Produto::create($request->all()); 
+            $product = Produto::create($request->all()); 
+            if(!$product){
+                return response()
+                        ->json([
+                            'error' => 'Record not create',
+                            'result' => 'false',
+                            'data' => []
+                        ])
+                        ->setStatusCode();
+            }
             $response = response()
-                        ->json($result)
+                        ->json([
+                            'error' => false,
+                            'result' => true,
+                            'data' => $product
+                        ])
                         ->setStatusCode(201);
                         
             return $response;            
@@ -43,19 +69,27 @@
          */
 
         public function update($id){
-            $produto = Produto::find($id);  
-            if(!$produto){
+            $product = Produto::find($id);  
+            if(!$product){
                 return response()
-                        ->json(['message' => 'Record not found',])
+                        ->json([
+                                'error' => 'Record not found',
+                                'result' => false,
+                                'data' => []
+                            ])
                         ->setstatusCode(404);
             }
-            $produto->nome = Request::input('nome');
-            $produto->descricao = Request::input('descricao');
-            $produto->quantidade = Request::input('quantidade');
-            $produto->valor = Request::input('valor');         
-            $produto->save();
+            $product->nome = Request::input('nome');
+            $product->descricao = Request::input('descricao');
+            $product->quantidade = Request::input('quantidade');
+            $product->valor = Request::input('valor');         
+            $product->save();
             $response = response()
-                        ->json($produto)
+                        ->json([
+                            'error' => false,
+                            'result' => true,
+                            'data' => $product
+                        ])
                         ->setStatusCode(200);
 
             return $response;
@@ -67,9 +101,24 @@
          * @return response:string
          **/
         public function delete($id){
-            $result = Produto::find($id);  
-            $result = $result->delete();
-            return response()->json($result);
+            $product = Produto::find($id);  
+            if(!$product){
+                return response()
+                        ->json([
+                            'error' => 'Record not found',
+                            'result' => false,
+                            'data' => []
+                        ])
+                        ->setStatusCode(204);
+            }
+            $product = $product->delete();
+            return response()
+                    ->json([
+                        'error' => false,
+                        'result' => true,
+                        'data' => $product
+                    ])
+                    ->setStatusCode(200);
         }
 
 
@@ -82,11 +131,19 @@
             $product = Produto::find($id);
             if(!$product){
                 return response()
-                        ->json(['message' => 'Record not found',])
-                        ->setStatusCode(404);
+                        ->json([
+                            'error' => 'Record not found',
+                            'result' => false,
+                            'data' => []
+                        ])
+                        ->setStatusCode(204);
             }
             $response = response()
-                        ->json($product)
+                        ->json([
+                            'error' => false,
+                            'result' => true,
+                            'data' => $product
+                        ])
                         ->setStatusCode(200);
             return $response;
         }
