@@ -21,8 +21,9 @@ class UsuarioController extends Controller
                         'error' => 'Record not found',
                         'result' => false,
                         'data' => []
-                    ])
+                    ]);
         }
+
         $response = response()
                     ->json([
                         'error' => false,
@@ -95,10 +96,10 @@ class UsuarioController extends Controller
         if(!$user){
             return response()
                     ->json([
-                            'error' => 'Record not found',
-                            'result' => false,
-                            'data' => []
-                            ])
+                        'error' => 'Record not found',
+                        'result' => false,
+                        'data' => []
+                        ])
                     ->setStatusCode(204);
         }
         $user = $user->delete();
