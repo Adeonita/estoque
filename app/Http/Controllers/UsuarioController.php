@@ -15,8 +15,19 @@ class UsuarioController extends Controller
          */
     public function index(){
         $users = User::all();
+        if(!$user){
+            return response()
+                    ->json([
+                        'error' => 'Record not found',
+                        'result' => false,
+                        'data' => []
+                    ])
+        }
         $response = response()
-                    ->json($users)
+                    ->json([
+                        'error' => false,
+                        'result' => true,
+                        'data' => $users])
                     ->setStatusCode(200);
 
         return $response;
@@ -34,7 +45,11 @@ class UsuarioController extends Controller
         $user->password = bcrypt($request->password);
         $user->save();
         $response = response()
-                    ->json($user)
+                    ->json([
+                        'error' => false,
+                        'result' => true,
+                        'data' => $user
+                        ])
                     ->setStatusCode(201);
         
         return $response;
@@ -49,7 +64,11 @@ class UsuarioController extends Controller
         $user = User::find($id);
         if(!$user){
             return response()
-                ->json(['message' => 'Record not found'])
+                ->json([
+                    'error' => 'Record not found',
+                    'result' => false,
+                    'data' => []
+                    ])
                 ->setStatusCode(204); //nenhum conteudo encontrado
         }
         $user->name = Request::input('name');
@@ -57,7 +76,11 @@ class UsuarioController extends Controller
         $user->password = bcrypt(Request::input('password'));  
         $user->save();
         $response = response()
-                    ->json($user)
+                    ->json([
+                        'error' => false,
+                        'result' => true,
+                        'data' => $user
+                        ])
                     ->setStatusCode(200);
         return $response;
     }
@@ -71,12 +94,20 @@ class UsuarioController extends Controller
         $user = User::find($id);
         if(!$user){
             return response()
-                    ->json(['message' => 'Record not found'])
+                    ->json([
+                            'error' => 'Record not found',
+                            'result' => false,
+                            'data' => []
+                            ])
                     ->setStatusCode(204);
         }
         $user = $user->delete();
         return response()
-                    ->json()
+                    ->json([
+                        'error' => false,
+                        'result' => true,
+                        'data' => []
+                    ])
                     ->setStatusCode(200);
     }
 
@@ -89,11 +120,19 @@ class UsuarioController extends Controller
         $user = User::find($id);
         if(!$user){
             return response()
-                    ->json(['erro' => 'Record not found', 'result'=>false, 'data'=>[]])
+                    ->json([
+                            'erro' => 'Record not found', 
+                            'result'=>false, 
+                            'data'=>[]
+                        ])
                     ->setStatusCode(404);
         }
         $response = response()
-                    ->json(['erro'=>false, 'result'=>true, 'data' => $user])
+                    ->json([
+                            'erro'=>false, 
+                            'result'=>true, 
+                            'data' => $user
+                        ])
                     ->setStatusCode(200);
         return $response;
     }
