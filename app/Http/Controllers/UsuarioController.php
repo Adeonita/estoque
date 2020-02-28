@@ -126,7 +126,7 @@ class UsuarioController extends Controller
                             'result'=>false, 
                             'data'=>[]
                         ])
-                    ->setStatusCode(404);
+                    ->setStatusCode(204);
         }
         $response = response()
                     ->json([

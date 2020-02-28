@@ -49,7 +49,7 @@
                             'result' => 'false',
                             'data' => []
                         ])
-                        ->setStatusCode();
+                        ->setStatusCode(204);
             }
             $response = response()
                         ->json([
@@ -77,7 +77,7 @@
                                 'result' => false,
                                 'data' => []
                             ])
-                        ->setstatusCode(404);
+                        ->setstatusCode(204);
             }
             $product->nome = Request::input('nome');
             $product->descricao = Request::input('descricao');
