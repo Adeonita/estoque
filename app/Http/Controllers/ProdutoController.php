@@ -28,7 +28,7 @@
             }
             return response()
                     ->json([
-                        'error' => 'Record not found',
+                        'error' => false,
                         'result' => true,
                         'data' => $products
                     ])
@@ -136,7 +136,7 @@
                             'result' => false,
                             'data' => []
                         ])
-                        ->setStatusCode(204);
+                        ->setStatusCode(404);
             }
             $response = response()
                         ->json([
